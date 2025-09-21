@@ -25,11 +25,20 @@ const loadSettings = async () => {
     throw new Error('Invalid protected fields structure in Firebase')
   }
   
-  // Apply protected status to fields
-  const fields = template.fields.map(field => ({
-    ...field,
-    locked: protectedFields.includes(field.id) || field.locked || false
-  }))
+  // Apply protected status and type to fields
+  const fields = template.fields.map(field => {
+    // Determine field type based on id
+    let type = 'detail' // default type
+    if (field.id === 'title') type = 'title'
+    else if (field.id === 'subtitle') type = 'subtitle'
+    else if (field.id === 'footer') type = 'footer'
+    
+    return {
+      ...field,
+      type,
+      locked: protectedFields.includes(field.id) || field.locked || false
+    }
+  })
   
   return fields
 }
@@ -87,7 +96,18 @@ export function useInvitation() {
       if (response.ok) {
         const data = await response.json()
         if (data && data.fields) {
-          setFields(data.fields)
+          // Ensure fields have the correct type property
+          const fieldsWithType = data.fields.map(field => {
+            if (!field.type) {
+              let type = 'detail' // default type
+              if (field.id === 'title') type = 'title'
+              else if (field.id === 'subtitle') type = 'subtitle'
+              else if (field.id === 'footer') type = 'footer'
+              return { ...field, type }
+            }
+            return field
+          })
+          setFields(fieldsWithType)
         } else if (data) {
           // Handle old format - need to load settings to get field structure
           try {
