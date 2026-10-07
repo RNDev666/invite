@@ -13,7 +13,7 @@ function Footer() {
             <span className="text-neutral-400 dark:text-neutral-600">•</span>
             
             <a 
-              href="https://github.com/bezalel6/invite" 
+              href="https://github.com/RNDev666/invite" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs transition-colors text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"

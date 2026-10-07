@@ -96,7 +96,7 @@ function PrivacyPolicy() {
           <p className="leading-relaxed">
             Questions? Concerns? Suggestions for our one template? Find us on{' '}
             <a 
-              href="https://github.com/bezalel6/invite" 
+              href="https://github.com/RNDev666/invite" 
               target="_blank" 
               rel="noopener noreferrer"
               className="underline transition-colors text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300"
